@@ -21,7 +21,8 @@ admin_wx = 'wxid_dg5xnz4s39ea21'
 # 单人黑名单列表
 single_block_list = ['wxid_xxxx']  # 最好把控制台微信加进去
 # 群组接受名单
-group_receive_list = ["19162403962@chatroom","17648533871@chatroom","18162133106@chatroom"]
+group_receive_list = ["19162403962@chatroom",
+                      "17648533871@chatroom", "18162133106@chatroom"]
 # 创建remark_name字典
 dict_remark_name = {}
 # 定义信息ID字典
@@ -131,7 +132,8 @@ def thread_handle_message(wx_inst):
                 # 判断群组id, 黑名单
                 from_chatroom_wxid = message.get(
                     'data', {}).get('from_chatroom_wxid', '')
-                print('接受群组信息1:',group_receive_list, (from_chatroom_wxid in group_receive_list),send_or_recv, send_or_recv[0])
+                print('接受群组信息1:', group_receive_list,
+                      (from_chatroom_wxid in group_receive_list), send_or_recv, send_or_recv[0])
                 if send_or_recv[0] == '0':
                     if from_chatroom_wxid in group_receive_list:
                         print('接受群组信息2:', send_or_recv,
@@ -149,9 +151,9 @@ def thread_handle_message(wx_inst):
                             print('发送消息:', '微信收到群 {} 消息{} : {}  信息ID {}'.format(from_chatroom_nickname,
                                                                                 dict_remark_name.get(from_wxid, from_wxid), msg_content, ID_num))
                             #wx_inst.send_text(admin_wx, '微信收到群 {} 消息\n {} : {}  \n信息ID {}'.format(from_chatroom_nickname,dict_remark_name.get(from_wxid, from_wxid), msg_content, ID_num))
-                            if re.match(r'^舔.+', msg_content):
+                            if re.match(r'^[舔,赞,顶,捧]+.+', msg_content):
                                 content_name = re.match(
-                                    r'^舔(.+)', msg_content).group(1).replace("@", "").replace("?", "")
+                                    r'^[舔,赞,顶,捧]+(.+)', msg_content).group(1).replace("@", "").replace("?", "")
                                 response = requests.get(
                                     "https://chp.shadiao.app/api.php")
                                 wx_inst.send_text(
@@ -163,14 +165,41 @@ def thread_handle_message(wx_inst):
                                     "https://chp.shadiao.app/api.php")
                                 wx_inst.send_text(
                                     from_chatroom_wxid, "@{}  {}".format(content_name, response.text))
-                            elif re.match(r'^喷.+', msg_content) and from_wxid == admin_wx:
+                            elif re.match(r'^[喷,骂]+.+', msg_content) and from_wxid == admin_wx:
                                 # https://nmsl.shadiao.app/api.php?level=min&lang=zh_cn
                                 content_name = re.match(
-                                    r'^喷(.+)', msg_content).group(1).replace("@", "").replace("?", "")
+                                    r'^[喷,骂]+(.+)', msg_content).group(1).replace("@", "").replace("?", "")
                                 response = requests.get(
                                     "https://nmsl.shadiao.app/api.php?level=min&lang=zh_cn")
                                 wx_inst.send_text(
                                     from_chatroom_wxid, "@{}  {}".format(content_name, response.text))
+                            elif re.match(r'[help,帮助]+.*@天天bot[\?]*[help,帮助]+', msg_content):
+                                help_msg='''天气：@bot天气深圳
+中英翻译：@bot翻译i love you
+智能聊天：@bot你好
+笑话：@bot笑话
+歌词⑴：@bot歌词后来
+歌词⑵：@bot歌词后来-刘若英
+计算⑴：@bot计算1+1*2/3-4
+计算⑵：@bot1+1*2/3-4
+ＩＰ⑴：@bot归属127.0.0.1
+ＩＰ⑵：@bot127.0.0.1
+手机⑴：@bot归属13430108888
+手机⑵：@bot13430108888
+成语查询：@bot成语一生一世
+五笔/拼音：@bot好字的五笔/拼音'''
+                                wx_inst.send_text(
+                                    from_chatroom_wxid, "{}".format(help_msg))
+                            elif re.match(r'.*@天天bot[\?]*.*', msg_content):
+                                to_my_msg = re.match(
+                                    r'(.*)@天天bot[\?]*(.*)', msg_content).group(1) + re.match(
+                                    r'(.*)@天天bot[\?]*(.*)', msg_content).group(2)
+                                print(to_my_msg)
+                                response = requests.get(
+                                    "http://api.qingyunke.com/api.php?key=free&appid=0&msg="+to_my_msg)
+                                print(response.text)
+                                wx_inst.send_text(
+                                    from_chatroom_wxid, "{}".format(json.loads(response.text).get('content','').replace('{br}','\n')))
                         else:
                             from_wxid = message.get('data', {}).get(
                                 'from_member_wxid', '')
@@ -266,12 +295,12 @@ def load_config():
             admin_wx = j.get('admin_wx', 'wxid_dg5xnz4s39ea21')
             single_block_list = j.get('single_block_list', ['wxid_xxxx'])
             group_receive_list = j.get('group_receive_list', [
-                                        '19162403962@chatroom'])
+                '19162403962@chatroom'])
             dict_remark_name = j.get('dict_remark_name', {})
             dict_msg_ID = j.get('dict_msg_ID', {})
             print('重新加载配置：', j)
             print(admin_wx, single_block_list, group_receive_list,
-                    dict_remark_name, dict_msg_ID)
+                  dict_remark_name, dict_msg_ID)
             time.sleep(10)
     except Exception as e:
         print(e)
