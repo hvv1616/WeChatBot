@@ -1,0 +1,203 @@
+INFO:root:thread_recv_data start.
+INFO:root:thread_send_data start.
+INFO:root:wechat start success. pid:18372
+INFO:root:thread_handle_message_from_wx start.
+INFO:root:Accept new connection from 127.0.0.1:63792
+INFO:root:wechat login success，wx_id:wxid_kkp102awseir22 nickname:天天机器人 avatar_url:http://wx.qlogo.cn/mmhead/ver_1/pnvE5gKuNng99sfueLD7zB3TrrgfictntVlonjchfxTXicqnzdicIjprwHic6aNwJFU5k6NR4MX6VXsjeEEpwRXUwOPDsTnQMKWRIf9vrkDmrF4/0
+INFO:root:thread_recv_data start.
+INFO:root:thread_send_data start.
+INFO:root:wechat start success. pid:10628
+INFO:root:thread_handle_message_from_wx start.
+INFO:root:Accept new connection from 127.0.0.1:63922
+INFO:root:wechat login success，wx_id:wxid_kkp102awseir22 nickname:天天机器人 avatar_url:http://wx.qlogo.cn/mmhead/ver_1/pnvE5gKuNng99sfueLD7zB3TrrgfictntVlonjchfxTXicqnzdicIjprwHic6aNwJFU5k6NR4MX6VXsjeEEpwRXUwOPDsTnQMKWRIf9vrkDmrF4/0
+INFO:root:thread_recv_data start.
+INFO:root:thread_send_data start.
+INFO:root:wechat start success. pid:20576
+INFO:root:thread_handle_message_from_wx start.
+INFO:root:Accept new connection from 127.0.0.1:54169
+INFO:root:wechat disconnect tcp, exited maybe.
+INFO:root:Connection from 127.0.0.1:54169 closed.
+INFO:root:thread_recv_data end.
+INFO:root:thread_recv_data start.
+INFO:root:thread_send_data start.
+INFO:root:wechat start success. pid:3860
+INFO:root:thread_handle_message_from_wx start.
+INFO:root:Accept new connection from 127.0.0.1:61343
+INFO:root:wechat login success，wx_id:wxid_kkp102awseir22 nickname:天天机器人 avatar_url:http://wx.qlogo.cn/mmhead/ver_1/pnvE5gKuNng99sfueLD7zB3TrrgfictntVlonjchfxTXicqnzdicIjprwHic6aNwJFU5k6NR4MX6VXsjeEEpwRXUwOPDsTnQMKWRIf9vrkDmrF4/0
+INFO:root:thread_recv_data start.
+INFO:root:thread_send_data start.
+INFO:root:wechat start success. pid:10388
+INFO:root:thread_handle_message_from_wx start.
+INFO:root:Accept new connection from 127.0.0.1:61436
+INFO:root:wechat login success，wx_id:wxid_kkp102awseir22 nickname:天天机器人 avatar_url:http://wx.qlogo.cn/mmhead/ver_1/pnvE5gKuNng99sfueLD7zB3TrrgfictntVlonjchfxTXicqnzdicIjprwHic6aNwJFU5k6NR4MX6VXsjeEEpwRXUwOPDsTnQMKWRIf9vrkDmrF4/0
+INFO:root:thread_recv_data start.
+INFO:root:thread_send_data start.
+INFO:root:wechat start success. pid:19704
+INFO:root:thread_handle_message_from_wx start.
+INFO:root:Accept new connection from 127.0.0.1:61854
+INFO:root:wechat login success，wx_id:wxid_kkp102awseir22 nickname:天天机器人 avatar_url:http://wx.qlogo.cn/mmhead/ver_1/pnvE5gKuNng99sfueLD7zB3TrrgfictntVlonjchfxTXicqnzdicIjprwHic6aNwJFU5k6NR4MX6VXsjeEEpwRXUwOPDsTnQMKWRIf9vrkDmrF4/0
+INFO:root:thread_recv_data start.
+INFO:root:thread_send_data start.
+INFO:root:wechat start success. pid:2400
+INFO:root:thread_handle_message_from_wx start.
+INFO:root:Accept new connection from 127.0.0.1:62069
+INFO:root:wechat login success，wx_id:wxid_kkp102awseir22 nickname:天天机器人 avatar_url:http://wx.qlogo.cn/mmhead/ver_1/pnvE5gKuNng99sfueLD7zB3TrrgfictntVlonjchfxTXicqnzdicIjprwHic6aNwJFU5k6NR4MX6VXsjeEEpwRXUwOPDsTnQMKWRIf9vrkDmrF4/0
+INFO:root:thread_recv_data start.
+INFO:root:thread_send_data start.
+INFO:root:wechat start success. pid:4032
+INFO:root:thread_handle_message_from_wx start.
+INFO:root:Accept new connection from 127.0.0.1:62222
+INFO:root:wechat login success，wx_id:wxid_kkp102awseir22 nickname:天天机器人 avatar_url:http://wx.qlogo.cn/mmhead/ver_1/pnvE5gKuNng99sfueLD7zB3TrrgfictntVlonjchfxTXicqnzdicIjprwHic6aNwJFU5k6NR4MX6VXsjeEEpwRXUwOPDsTnQMKWRIf9vrkDmrF4/0
+INFO:root:thread_recv_data start.
+INFO:root:thread_send_data start.
+INFO:root:wechat start success. pid:15204
+INFO:root:thread_handle_message_from_wx start.
+INFO:root:Accept new connection from 127.0.0.1:62356
+INFO:root:wechat login success，wx_id:wxid_kkp102awseir22 nickname:天天机器人 avatar_url:http://wx.qlogo.cn/mmhead/ver_1/pnvE5gKuNng99sfueLD7zB3TrrgfictntVlonjchfxTXicqnzdicIjprwHic6aNwJFU5k6NR4MX6VXsjeEEpwRXUwOPDsTnQMKWRIf9vrkDmrF4/0
+INFO:root:thread_recv_data start.
+INFO:root:thread_send_data start.
+INFO:root:wechat start success. pid:12472
+INFO:root:thread_handle_message_from_wx start.
+INFO:root:Accept new connection from 127.0.0.1:62542
+INFO:root:wechat login success，wx_id:wxid_kkp102awseir22 nickname:天天机器人 avatar_url:http://wx.qlogo.cn/mmhead/ver_1/pnvE5gKuNng99sfueLD7zB3TrrgfictntVlonjchfxTXicqnzdicIjprwHic6aNwJFU5k6NR4MX6VXsjeEEpwRXUwOPDsTnQMKWRIf9vrkDmrF4/0
+INFO:root:thread_recv_data start.
+INFO:root:thread_send_data start.
+INFO:root:wechat start success. pid:17496
+INFO:root:thread_handle_message_from_wx start.
+INFO:root:Accept new connection from 127.0.0.1:63742
+INFO:root:wechat login success，wx_id:wxid_kkp102awseir22 nickname:天天机器人 avatar_url:http://wx.qlogo.cn/mmhead/ver_1/pnvE5gKuNng99sfueLD7zB3TrrgfictntVlonjchfxTXicqnzdicIjprwHic6aNwJFU5k6NR4MX6VXsjeEEpwRXUwOPDsTnQMKWRIf9vrkDmrF4/0
+INFO:root:thread_recv_data start.
+INFO:root:thread_send_data start.
+INFO:root:wechat start success. pid:12232
+INFO:root:thread_handle_message_from_wx start.
+INFO:root:Accept new connection from 127.0.0.1:51494
+INFO:root:wechat login success，wx_id:wxid_kkp102awseir22 nickname:天天机器人 avatar_url:http://wx.qlogo.cn/mmhead/ver_1/pnvE5gKuNng99sfueLD7zB3TrrgfictntVlonjchfxTXicqnzdicIjprwHic6aNwJFU5k6NR4MX6VXsjeEEpwRXUwOPDsTnQMKWRIf9vrkDmrF4/0
+INFO:root:thread_recv_data start.
+INFO:root:thread_send_data start.
+INFO:root:wechat start success. pid:18832
+INFO:root:thread_handle_message_from_wx start.
+INFO:root:Accept new connection from 127.0.0.1:51626
+INFO:root:wechat login success，wx_id:wxid_kkp102awseir22 nickname:天天机器人 avatar_url:http://wx.qlogo.cn/mmhead/ver_1/pnvE5gKuNng99sfueLD7zB3TrrgfictntVlonjchfxTXicqnzdicIjprwHic6aNwJFU5k6NR4MX6VXsjeEEpwRXUwOPDsTnQMKWRIf9vrkDmrF4/0
+INFO:root:thread_recv_data start.
+INFO:root:thread_send_data start.
+INFO:root:wechat start success. pid:18528
+INFO:root:thread_handle_message_from_wx start.
+INFO:root:Accept new connection from 127.0.0.1:52928
+INFO:root:wechat login success，wx_id:wxid_kkp102awseir22 nickname:天天bot avatar_url:http://wx.qlogo.cn/mmhead/ver_1/pnvE5gKuNng99sfueLD7zB3TrrgfictntVlonjchfxTXicqnzdicIjprwHic6aNwJFU5k6NR4MX6VXsjeEEpwRXUwOPDsTnQMKWRIf9vrkDmrF4/0
+INFO:root:thread_recv_data start.
+INFO:root:thread_send_data start.
+INFO:root:wechat start success. pid:17368
+INFO:root:thread_handle_message_from_wx start.
+INFO:root:Accept new connection from 127.0.0.1:54069
+INFO:root:wechat login success，wx_id:wxid_kkp102awseir22 nickname:天天bot avatar_url:http://wx.qlogo.cn/mmhead/ver_1/pnvE5gKuNng99sfueLD7zB3TrrgfictntVlonjchfxTXicqnzdicIjprwHic6aNwJFU5k6NR4MX6VXsjeEEpwRXUwOPDsTnQMKWRIf9vrkDmrF4/0
+INFO:root:thread_recv_data start.
+INFO:root:thread_send_data start.
+INFO:root:wechat start success. pid:15724
+INFO:root:thread_handle_message_from_wx start.
+INFO:root:Accept new connection from 127.0.0.1:54327
+INFO:root:wechat login success，wx_id:wxid_kkp102awseir22 nickname:天天bot avatar_url:http://wx.qlogo.cn/mmhead/ver_1/pnvE5gKuNng99sfueLD7zB3TrrgfictntVlonjchfxTXicqnzdicIjprwHic6aNwJFU5k6NR4MX6VXsjeEEpwRXUwOPDsTnQMKWRIf9vrkDmrF4/0
+INFO:root:thread_recv_data start.
+INFO:root:thread_send_data start.
+INFO:root:wechat start success. pid:16544
+INFO:root:thread_handle_message_from_wx start.
+INFO:root:Accept new connection from 127.0.0.1:54516
+INFO:root:wechat disconnect tcp, exited maybe.
+INFO:root:Connection from 127.0.0.1:54516 closed.
+INFO:root:thread_recv_data end.
+INFO:root:thread_recv_data start.
+INFO:root:thread_send_data start.
+INFO:root:wechat start success. pid:10320
+INFO:root:thread_handle_message_from_wx start.
+INFO:root:Accept new connection from 127.0.0.1:54574
+INFO:root:wechat login success，wx_id:wxid_kkp102awseir22 nickname:天天bot avatar_url:http://wx.qlogo.cn/mmhead/ver_1/pnvE5gKuNng99sfueLD7zB3TrrgfictntVlonjchfxTXicqnzdicIjprwHic6aNwJFU5k6NR4MX6VXsjeEEpwRXUwOPDsTnQMKWRIf9vrkDmrF4/0
+INFO:root:thread_recv_data start.
+INFO:root:thread_send_data start.
+INFO:root:wechat start success. pid:16740
+INFO:root:thread_handle_message_from_wx start.
+ERROR:root:send data crashed.
+Traceback (most recent call last):
+  File "WechatPCAPI\WechatPCAPI.py", line 392, in WechatPCAPI.TCPConnection.thread_send_data
+AttributeError: 'TCPConnection' object has no attribute 'sock_client'
+INFO:root:thread_recv_data start.
+INFO:root:thread_send_data start.
+INFO:root:wechat start success. pid:23532
+INFO:root:thread_handle_message_from_wx start.
+INFO:root:Accept new connection from 127.0.0.1:54906
+INFO:root:wechat login success，wx_id:wxid_kkp102awseir22 nickname:天天bot avatar_url:http://wx.qlogo.cn/mmhead/ver_1/pnvE5gKuNng99sfueLD7zB3TrrgfictntVlonjchfxTXicqnzdicIjprwHic6aNwJFU5k6NR4MX6VXsjeEEpwRXUwOPDsTnQMKWRIf9vrkDmrF4/0
+INFO:root:thread_recv_data start.
+INFO:root:thread_send_data start.
+INFO:root:wechat start success. pid:20684
+INFO:root:thread_handle_message_from_wx start.
+ERROR:root:send data crashed.
+Traceback (most recent call last):
+  File "WechatPCAPI\WechatPCAPI.py", line 392, in WechatPCAPI.TCPConnection.thread_send_data
+AttributeError: 'TCPConnection' object has no attribute 'sock_client'
+INFO:root:thread_recv_data start.
+INFO:root:thread_send_data start.
+INFO:root:wechat start success. pid:21592
+INFO:root:thread_handle_message_from_wx start.
+INFO:root:Accept new connection from 127.0.0.1:55008
+INFO:root:wechat login success，wx_id:wxid_kkp102awseir22 nickname:天天bot avatar_url:http://wx.qlogo.cn/mmhead/ver_1/pnvE5gKuNng99sfueLD7zB3TrrgfictntVlonjchfxTXicqnzdicIjprwHic6aNwJFU5k6NR4MX6VXsjeEEpwRXUwOPDsTnQMKWRIf9vrkDmrF4/0
+INFO:root:thread_recv_data start.
+INFO:root:thread_send_data start.
+INFO:root:wechat start success. pid:1764
+INFO:root:thread_handle_message_from_wx start.
+INFO:root:Accept new connection from 127.0.0.1:55073
+INFO:root:wechat login success，wx_id:wxid_kkp102awseir22 nickname:天天bot avatar_url:http://wx.qlogo.cn/mmhead/ver_1/pnvE5gKuNng99sfueLD7zB3TrrgfictntVlonjchfxTXicqnzdicIjprwHic6aNwJFU5k6NR4MX6VXsjeEEpwRXUwOPDsTnQMKWRIf9vrkDmrF4/0
+INFO:root:thread_recv_data start.
+INFO:root:thread_send_data start.
+INFO:root:wechat start success. pid:16064
+INFO:root:thread_handle_message_from_wx start.
+INFO:root:Accept new connection from 127.0.0.1:55162
+INFO:root:wechat login success，wx_id:wxid_kkp102awseir22 nickname:天天bot avatar_url:http://wx.qlogo.cn/mmhead/ver_1/pnvE5gKuNng99sfueLD7zB3TrrgfictntVlonjchfxTXicqnzdicIjprwHic6aNwJFU5k6NR4MX6VXsjeEEpwRXUwOPDsTnQMKWRIf9vrkDmrF4/0
+INFO:root:thread_recv_data start.
+INFO:root:thread_send_data start.
+INFO:root:wechat start success. pid:17504
+INFO:root:thread_handle_message_from_wx start.
+INFO:root:Accept new connection from 127.0.0.1:55270
+INFO:root:wechat login success，wx_id:wxid_kkp102awseir22 nickname:天天bot avatar_url:http://wx.qlogo.cn/mmhead/ver_1/pnvE5gKuNng99sfueLD7zB3TrrgfictntVlonjchfxTXicqnzdicIjprwHic6aNwJFU5k6NR4MX6VXsjeEEpwRXUwOPDsTnQMKWRIf9vrkDmrF4/0
+INFO:root:thread_recv_data start.
+INFO:root:thread_send_data start.
+INFO:root:wechat start success. pid:17792
+INFO:root:thread_handle_message_from_wx start.
+INFO:root:Accept new connection from 127.0.0.1:55326
+INFO:root:wechat login success，wx_id:wxid_kkp102awseir22 nickname:天天bot avatar_url:http://wx.qlogo.cn/mmhead/ver_1/pnvE5gKuNng99sfueLD7zB3TrrgfictntVlonjchfxTXicqnzdicIjprwHic6aNwJFU5k6NR4MX6VXsjeEEpwRXUwOPDsTnQMKWRIf9vrkDmrF4/0
+INFO:root:wechat disconnect tcp, exited maybe.
+INFO:root:Connection from 127.0.0.1:55326 closed.
+INFO:root:thread_recv_data end.
+INFO:root:thread_recv_data start.
+INFO:root:thread_send_data start.
+INFO:root:wechat start success. pid:19200
+INFO:root:thread_handle_message_from_wx start.
+ERROR:root:send data crashed.
+Traceback (most recent call last):
+  File "WechatPCAPI\WechatPCAPI.py", line 392, in WechatPCAPI.TCPConnection.thread_send_data
+AttributeError: 'TCPConnection' object has no attribute 'sock_client'
+INFO:root:thread_recv_data start.
+INFO:root:thread_send_data start.
+INFO:root:wechat start success. pid:14372
+INFO:root:thread_handle_message_from_wx start.
+INFO:root:Accept new connection from 127.0.0.1:55385
+INFO:root:wechat login success，wx_id:wxid_kkp102awseir22 nickname:天天bot avatar_url:http://wx.qlogo.cn/mmhead/ver_1/pnvE5gKuNng99sfueLD7zB3TrrgfictntVlonjchfxTXicqnzdicIjprwHic6aNwJFU5k6NR4MX6VXsjeEEpwRXUwOPDsTnQMKWRIf9vrkDmrF4/0
+INFO:root:thread_recv_data start.
+INFO:root:thread_send_data start.
+INFO:root:wechat start success. pid:17200
+INFO:root:thread_handle_message_from_wx start.
+ERROR:root:send data crashed.
+Traceback (most recent call last):
+  File "WechatPCAPI\WechatPCAPI.py", line 392, in WechatPCAPI.TCPConnection.thread_send_data
+AttributeError: 'TCPConnection' object has no attribute 'sock_client'
+INFO:root:thread_recv_data start.
+INFO:root:thread_send_data start.
+INFO:root:wechat start success. pid:23520
+INFO:root:thread_handle_message_from_wx start.
+INFO:root:Accept new connection from 127.0.0.1:55611
+INFO:root:wechat disconnect tcp, exited maybe.
+INFO:root:Connection from 127.0.0.1:55611 closed.
+INFO:root:thread_recv_data end.
+INFO:root:thread_recv_data start.
+INFO:root:thread_send_data start.
+INFO:root:wechat start success. pid:22308
+INFO:root:thread_handle_message_from_wx start.
+INFO:root:Accept new connection from 127.0.0.1:55639
+INFO:root:wechat login success，wx_id:wxid_kkp102awseir22 nickname:天天bot avatar_url:-
