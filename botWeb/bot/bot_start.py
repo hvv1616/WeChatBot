@@ -21,8 +21,15 @@ admin_wx = 'wxid_dg5xnz4s39ea21'
 # 单人黑名单列表
 single_block_list = ['wxid_xxxx']  # 最好把控制台微信加进去
 # 群组接受名单
-group_receive_list = ["19162403962@chatroom",
-                      "17648533871@chatroom", "18162133106@chatroom"]
+group_receive_list = ["19162403962@chatroom",#测试1群
+                      "17648533871@chatroom", #测试2群
+                      "18162133106@chatroom",#大娃去哪了
+                      "5581512142@chatroom",#顺其自然
+                      "7165888394@chatroom",#家人2（年轻人）
+                      "7029811144@chatroom", #人类精英交流群
+                      "20209106528@chatroom",# SC中台组
+                      '20086915165@chatroom', #鲧禹中台大群
+                      ]
 # 创建remark_name字典
 dict_remark_name = {}
 # 定义信息ID字典
@@ -151,15 +158,15 @@ def thread_handle_message(wx_inst):
                             print('发送消息:', '微信收到群 {} 消息{} : {}  信息ID {}'.format(from_chatroom_nickname,
                                                                                 dict_remark_name.get(from_wxid, from_wxid), msg_content, ID_num))
                             #wx_inst.send_text(admin_wx, '微信收到群 {} 消息\n {} : {}  \n信息ID {}'.format(from_chatroom_nickname,dict_remark_name.get(from_wxid, from_wxid), msg_content, ID_num))
-                            if re.match(r'^[舔,赞,顶,捧]+.+', msg_content):
+                            if re.match(r'^[舔,赞,顶,捧,夸]+.+', msg_content):
                                 content_name = re.match(
-                                    r'^[舔,赞,顶,捧]+(.+)', msg_content).group(1).replace("@", "").replace("?", "")
+                                    r'^[舔,赞,顶,捧,夸]+(.+)', msg_content).group(1).replace("@", "").replace("?", "")
                                 response = requests.get(
                                     "https://chp.shadiao.app/api.php")
                                 wx_inst.send_text(
                                     from_chatroom_wxid, "@{}  {}".format(content_name, response.text))
-                            elif re.match(r'^.+[你]*真[棒,强,厉害]+', msg_content):
-                                content_name = re.match(r'^(.+)[你]*真[棒,强,厉害]+', msg_content).group(
+                            elif re.match(r'^.+[你]*真[棒,强,厉害,牛逼]+', msg_content):
+                                content_name = re.match(r'^(.+)[你]*真[棒,强,厉害,牛逼]+', msg_content).group(
                                     1).replace("@", "").replace("你", "").replace("?", "")
                                 response = requests.get(
                                     "https://chp.shadiao.app/api.php")
@@ -311,7 +318,7 @@ def main():
     # threading.Thread(target=load_config,
     #                  args=()).start()
     # print("配置加载完成！")
-    load_config()
+   # load_config()
     wx_inst = WechatPCAPI(on_message=onmessage)
     wx_inst.start_wechat(block=True)
     time.sleep(3)
@@ -323,7 +330,7 @@ def main():
     print("运行中....")
     threading.Thread(target=thead_handle_getmember,
                      args=(wx_inst, Group_list,)).start()
-
+    return wx_inst
     # threading.Thread(target=thread_handle_member_welcome,
     #                  args=(wx_inst, member_groups,)).start()
 
