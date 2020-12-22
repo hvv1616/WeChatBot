@@ -1,5 +1,4 @@
 {
-    
     "group_id_arr": [
         "1",
         "2"
@@ -17,9 +16,45 @@
             "from_chatroom_nickname": "测试群"
         }
     },
-    "admin_wx":"wxid_dg5xnz4s39ea21",
-    "single_block_list": ["wxid_dg5xnz4s39ea21_1"],
-    "group_receive_list":["19162403962@chatroom","17648533871@chatroom","18162133106@chatroom"],
-    "dict_remark_name":{},
-    "dict_msg_ID":{}
+    "admin_wx": "wxid_dg5xnz4s39ea21",
+    "single_block_list": [
+        "wxid_dg5xnz4s39ea21_1"
+    ],
+    "group_receive_list_dic": [
+        {
+            "19162403962@chatroom": "测试1群"
+        },
+        {
+            "17648533871————————@chatroom": "测试2群"
+        },
+        {
+            "18162133106@chatroom": "大娃去哪了"
+        },
+        {
+            "5581512142@chatroom": "顺其自然"
+        },
+        {
+            "7165888394@chatroom": "家人2（年轻人）"
+        },
+        {
+            "7029811144@chatroom": "人类精英交流群"
+        },
+        {
+            "20209106528@chatroom": "SC中台组"
+        },
+        {
+            "20086915165@chatroom": "鲧禹中台大群"
+        },
+        {
+            "17648533871@chatroom": "测试2群"
+        },
+        {
+            "3805205520@chatroom": "家人"
+        },
+        {
+            "20817173100@chatroom": "王者营地"
+        }
+    ],
+    "dict_remark_name": {},
+    "dict_msg_ID": {}
 }
