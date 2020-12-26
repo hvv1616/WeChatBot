@@ -172,9 +172,9 @@ def thread_handle_message(wx_inst):
                                 wx_inst.send_text(
                                     from_chatroom_wxid, "@{}  {}".format(content_name, response.text))
                             
-                            elif re.match(r'.*[点歌]+.+', msg_content):
+                            elif re.match(r'点歌.+', msg_content):
                                 content_text = re.match(
-                                    r'.*[点歌]+(.+)', msg_content).group(1).replace("@", "").replace("?", "")
+                                    r'点歌(.+)', msg_content).group(1).replace("@", "").replace("?", "")
                                 print("点歌：", content_text)
                                 response = requests.get(
                                     "https://c.y.qq.com/soso/fcgi-bin/client_search_cp?p=1&n=1&w="+content_text+"&format=json")
