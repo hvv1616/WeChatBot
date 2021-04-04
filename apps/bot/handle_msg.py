@@ -3,6 +3,7 @@ import requests
 import os
 import json
 from .bot_service import BotService
+from .activity_service import ActivityService
 from .get_images import randomFile, filePathList, start as get_today_image_start, start_all as get_all_image
 from .models import *
 bot_name = "@天天bot"
@@ -11,23 +12,24 @@ host = "http://127.0.0.1:8000"
 
 
 def handle_all_message(wx_inst, message):
+    try:
+        bot_wxid =message.get('user', 'bot_wxid')
+        BotService.load_bot_config(bot_wxid=bot_wxid)
+        global admin_wx
+        admin_wx = BotService.get_config_val("admin_wx")
+        if not admin_wx:
+            admin_wx = "admin_wx"
+        bot = BotService(bot_wxid=bot_wxid)
+        bot.saveMsg(message)
+        send_or_recv = message.get('data', {}).get(
+            'send_or_recv', '')  # 0是收到的消息 1是发出的 对于1不要再回复了 不然会无限循环回复
+        if 'msg::single' in message.get('type'):
+            handle_single_message(wx_inst, message)
 
-    bot_wxid =message.get('user', 'bot_wxid')
-    BotService.load_bot_config(bot_wxid=bot_wxid)
-    global admin_wx
-    admin_wx = BotService.get_config_val("admin_wx")
-    if not admin_wx:
-        admin_wx = "admin_wx"
-    bot = BotService(bot_wxid=bot_wxid)
-    bot.saveMsg(message)
-    send_or_recv = message.get('data', {}).get(
-        'send_or_recv', '')  # 0是收到的消息 1是发出的 对于1不要再回复了 不然会无限循环回复
-    if 'msg::single' in message.get('type'):
-        handle_single_message(wx_inst, message)
-
-    if 'msg::chatroom' in message.get('type') and send_or_recv[0] == '0':
-        handle_group_message(wx_inst, message)
-
+        if 'msg::chatroom' in message.get('type') and send_or_recv[0] == '0':
+            handle_group_message(wx_inst, message)
+    except Exception as e:
+        print('消息处理错误：', e)
 
 def handle_single_message(wx_inst, message):
     send_or_recv = message.get('data', {}).get(
@@ -62,6 +64,7 @@ def handle_group_message(wx_inst, message):
         'data', {}).get('from_chatroom_nickname', '')
     bot_wxid = message.get('user', 'bot_wxid')
     botService = BotService(bot_wxid=bot_wxid)
+    activityService=ActivityService(message=message)
     # ####################################################################################################===>>>管理员操作命令
     if from_wxid == admin_wx and re.match(r'^['+bot_name+']+[\s\?]+管理[员]*命令[\s]*.+', msg_content):
         content_cmd = re.match(r'^['+bot_name+']+[\s\?]+管理[员]*命令[\s]*(.+)',
@@ -138,6 +141,26 @@ def handle_group_message(wx_inst, message):
         if re.match(r'^['+bot_name+']+[\s\?]+(我是色批|来张色图|我要看图片)', msg_content):
             randomImg = randomFile(isLoad=False)
             wx_inst.send_img(from_chatroom_wxid, randomImg)
+            return
+        if re.match(r'^['+bot_name+']+[\s\?]+发米家获取验证码.+', msg_content):
+            mobile = re.match(r'^['+bot_name+']+[\s\?]+发米家获取验证码(.+)',
+                                    msg_content).group(1).replace("@", "").replace("?", "")
+            if activityService.fmLoginGetCode(mobile):
+                wx_inst.send_text(from_chatroom_wxid, "发送登录验证码到"+mobile+"成功！收到验证码后请回复：【"+bot_name+" 发米家"+mobile+"验证码xxxxxx】")
+            else:
+                 wx_inst.send_text(from_chatroom_wxid, "发送登录验证码到"+mobile+"失败！请联系管理员！")
+            return
+        if re.match(r'^['+bot_name+']+[\s\?]*发米家[\d]+验证码[\d]+', msg_content):
+            obj = re.match(r'^['+bot_name+']+[\s\?]+发米家([\d]+)验证码([\d]+)',msg_content)
+            mobile=obj.group(1).replace("@", "").replace("?", "")
+            verifyCode = obj.group(2).replace("@", "").replace("?", "")
+            if activityService.fmLogin(mobile,verifyCode):
+                wx_inst.send_text(from_chatroom_wxid, mobile+"登录成功！请验证每日活动签到是否成功！如失效请重新操作登录！")
+            else:
+                wx_inst.send_text(from_chatroom_wxid, mobile+"登录失败！请联系管理员！")
+            return
+        if re.match(r'^['+bot_name+']+[\s\?]*发米家$', msg_content):
+            wx_inst.send_text(from_chatroom_wxid,"发米家签到活动操作步骤：\r\n 1.发送消息：【"+bot_name+"发米家获取验证码177xxxxxxxxx】获取登录验证码。\r\n 2.发送消息：【"+bot_name+"发米家177xxxxxxxx验证码xxxxxx】登录，登录成功后即可每日自动签到。")
             return
     # ######################################################################################################==>>>supvip群组功能
     if data_type[0] == '1' and (from_chatroom_wxid in BotService.get_config_val_obj("group_supvip_list")):
@@ -224,7 +247,7 @@ def handle_group_message(wx_inst, message):
                             五笔/拼音：@bot好字的五笔/拼音'''
             wx_inst.send_text(from_chatroom_wxid, "{}".format(help_msg))
         # 随机聊天
-        elif re.match(r'^'+bot_name+'+[\?]*.*', msg_content):
+        elif re.match(r'^'+bot_name+'+[\s\?]*.*', msg_content):
             to_my_msg = msg_content.replace(
                 bot_name+"?", '').replace(bot_name+" ", '')
             response = requests.get(

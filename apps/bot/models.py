@@ -99,3 +99,26 @@ class User(models.Model):
         verbose_name = '用户表'
         verbose_name_plural = verbose_name
 
+class BotChatActivity(models.Model):
+    bot_wxid = models.CharField(max_length=255, default='', blank=True, verbose_name='机器人微信id')
+    activity_type=models.CharField(max_length=1000, default='', blank=True, verbose_name='活动类型')
+    from_member_wxid = models.CharField(max_length=100, default='', blank=True, verbose_name='发送人id')
+    from_member_nickname = models.CharField(max_length=100, default='', blank=True, verbose_name='发送人微信名称')
+    from_chatroom_wxid= models.CharField(max_length=100, default='', blank=True, verbose_name='群组id')
+    from_chatroom_nickname= models.CharField(max_length=100, default='', blank=True, verbose_name='群组名称')
+    login_username= models.CharField(max_length=100, default='', blank=True, verbose_name='登录用户名')
+    login_req=models.CharField(max_length=4000, default='', blank=True, verbose_name='登录请求信息')
+    login_res=models.CharField(max_length=4000, default='', blank=True, verbose_name='登录成功后响应体')
+    token = models.CharField(max_length=4000, default='', blank=True, verbose_name='token')
+    is_invalid = models.CharField(max_length=10, default='否', blank=True, verbose_name='是否失效（是，否）')
+    sign_time = models.CharField(max_length=20, default='', blank=True, verbose_name='上次签到时间')
+    sign_result = models.CharField(max_length=2000, default='', blank=True, verbose_name='上次签到结果')
+    update_time = models.CharField(max_length=20, default='', blank=True, verbose_name='更新时间')
+    create_time = models.CharField(max_length=20, default='', blank=True, verbose_name='创建时间')
+    desc = models.CharField(max_length=4000, default='', blank=True, verbose_name='备注')
+    
+    class Meta:
+        db_table = 'bot_activity'
+        verbose_name = '活动登录信息消息'
+        verbose_name_plural = verbose_name
+

@@ -16,4 +16,6 @@ urlpatterns = [
     url(r'^send_img/', views.send_img),
     url(r'^send_file/', views.send_file),
     url(r'^mouse/', views.mouse),
+    url(r'^signAll/', views.signAll),
+    
 ]

@@ -14,6 +14,9 @@ python manage.py flush
 python manage.py migrate
 # 变更models
 python manage.py makemigrations
+# 查看变更sql
+python manage.py sqlmigrate bot  0003
+
 # 安装window操作包 Windows - pywin32, pyHook
     #安装PyMouse包的window插件，cmd进入lib文件夹，运行
     pip install pyHook-1.5.1-cp37-cp37m-win_amd64.whl

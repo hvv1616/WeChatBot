@@ -38,7 +38,7 @@ from .get_images import start as get_images_start,download_load
 from django.http import HttpResponse,response
 from .handle_msg import handle_all_message
 from .util import Email
-
+from .activity_service import ActivityService
 from .WechatPCAPI import WechatPCAPI
 wx_inst = None
 num = 1
@@ -46,23 +46,30 @@ num = 1
 
 
 def test(request):
-    default_bot_wxid=BotService.get_config_val("bot_wxid")
-    bs = BotService(bot_wxid=default_bot_wxid)
-    print('bot_wxid',default_bot_wxid)
+    activityService=ActivityService({'user': 'wxid_kkp102awseir22', 'type': 'msg::chatroom', 'data': {'data_type': '1', 'send_or_recv': '1+[Demo]', 'from_chatroom_wxid': '19162403962@chatroom', 'from_member_wxid': None, 'time': '2021-3-4 23:20:59', 'msg': '13125110897登录成功！请验证每日活动签到是否成功！如失效请重新操作登录！', 'from_chatroom_nickname': '测试群'}})
+    activityService.signAll()
+    # default_bot_wxid=BotService.get_config_val("bot_wxid")
+    # bs = BotService(bot_wxid=default_bot_wxid)
+    # print('bot_wxid',default_bot_wxid)
     
-    #bs.init_bot_data()
-    #bs.addAdminWX("wxid_dg5xnz4s39ea21")
-    # get_images_start()
-    #ls = BotConfig.objects.values()
-    # bs.arrayConfigAdd("group_receive_list","wxid_kkp102awseir22")
-    # bs.arrayConfigDel("group_receive_list","wxid_kkp102awseir22")
-    #print(ls, type(ls))
-    #wx_inst.update_frinds()
-    global num
-    res=bs.getChatroomMsg("17648533871@chatroom",num)
-    num += 1
-    print(res)
-    return HttpResponse(res)
+    # #bs.init_bot_data()
+    # #bs.addAdminWX("wxid_dg5xnz4s39ea21")
+    # # get_images_start()
+    # #ls = BotConfig.objects.values()
+    # # bs.arrayConfigAdd("group_receive_list","wxid_kkp102awseir22")
+    # # bs.arrayConfigDel("group_receive_list","wxid_kkp102awseir22")
+    # #print(ls, type(ls))
+    # #wx_inst.update_frinds()
+    # global num
+    # res=bs.getChatroomMsg("17648533871@chatroom",num)
+    # num += 1
+    # print(res)
+    return HttpResponse('res')
+def signAll(request):
+    activityService=ActivityService({'user': 'wxid_kkp102awseir22', 'type': 'msg::chatroom', 'data': {'data_type': '1', 'send_or_recv': '1+[Demo]', 'from_chatroom_wxid': '19162403962@chatroom', 'from_member_wxid': None, 'time': '2021-3-4 23:20:59', 'msg': '13125110897登录成功！请验证每日活动签到是否成功！如失效请重新操作登录！', 'from_chatroom_nickname': '测试群'}})
+    
+    return HttpResponse(activityService.signAll())
+    
 def verify_wx(request):
     signature = request.GET.get("signature")  # 先获取加密签名
     #timestamp = data.timestamp  # 获取时间戳
@@ -146,6 +153,7 @@ def send_file(request):
     param=json.loads(request.body.decode())
     fileName=param["file_name"]
     filePath=os.path.abspath(download_load(param["file_url"],"./images/send_file",fileName))
+    print('send_file',filePath)
     wx_inst.send_file(param["to_user"], filePath)
     return response.JsonResponse({"message": "文件发送成功", "errorCode": 0, "data":param },safe=False,json_dumps_params={'ensure_ascii': False}) 
 # 监听所有微信消息
