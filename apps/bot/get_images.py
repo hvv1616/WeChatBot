@@ -342,4 +342,4 @@ def getRandomFile(path):
    else:
     return None
    
-randomFile(True)
+#randomFile(True)
