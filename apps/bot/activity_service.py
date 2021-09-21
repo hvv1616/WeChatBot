@@ -20,7 +20,13 @@ class ActivityService():
         获取发米家验证码
         '''
         url = "https://fmapp.chinafamilymart.com.cn/api/app/member/verifyCode"
-        payload="{\"distinctId\":\"\",\"mobile\":\""+mobile+"\",\"firstSend\":true,\"newVersion\":true}"
+
+        payload = json.dumps({
+        "distinctId": "",
+        "mobile": ""+mobile+"",
+        "firstSend": True,
+        "newVersion": True
+        })
         headers = {
         'Host': 'fmapp.chinafamilymart.com.cn',
         'Connection': 'keep-alive',
@@ -32,8 +38,11 @@ class ActivityService():
         'Referer': 'https://fmapp-activity.chinafamilymart.com.cn/login?query=%%257B%%2522response_type%%2522%%253A%%2522token%%2522%%252C%%2522client_id%%2522%%253A%%25225A7CF52A75C1CBFC%%2522%%252C%%2522redirect_uri%%2522%%253A%%2522https%%253A%%252F%%252Fmall-oapi.chinafamilymart.com.cn%%252Fapp%%252Fapi%%252Fv1.0%%252Fmember%%252Flogin%%252Fcallback%%2522%%252C%%2522status%%2522%%253A%%2522status%%2522%%252C%%2522udf1%%2522%%253A%%2522eyJjaGFubmVsIjoiMCIsImZvcndhcmRfdXJsIjoiYUhSMGNITTZMeTl0WVd4c0xXZzFMbU5vYVc1aFptRnRhV3g1YldGeWRDNWpiMjB1WTI0dmNHRm5aWE5CTDJ4dloybHVMMnh2WjJsdVAyaHBjMVZ5YkQwdmNHRm5aWE12YzJodmNIQnBibWREWVhJdmFXNWtaWGc9In0%%253D%%2522%%257D',
         'Accept-Encoding': 'gzip, deflate'
         }
-        #response ={"text":"{\"code\":\"200\",\"message\":\"\",\"data\":null}"}
+
         response = requests.request("POST", url, headers=headers, data=payload)
+
+        #response ={"text":"{\"code\":\"200\",\"message\":\"\",\"data\":null}"}
+        #response = requests.request("POST", url, headers=headers, data=payload)
         body=response.text
         resJObj=json.loads(body)
         print(body,resJObj)
@@ -51,7 +60,16 @@ class ActivityService():
         '''
         message=self.message
         url = "https://fmapp.chinafamilymart.com.cn/api/h5/login"
-        payload="{\"mobile\":\""+mobile+"\",\"verifyCode\":\""+verifyCode+"\",\"grantTypeCd\":\"1\",\"newVersion\":true,\"openId\":\"\",\"unionId\":\"\",\"openChannelCd\":1}"
+
+        payload = json.dumps({
+        "mobile": ""+mobile+"",
+        "verifyCode": ""+verifyCode+"",
+        "grantTypeCd": "1",
+        "newVersion": True,
+        "openId": "",
+        "unionId": "",
+        "openChannelCd": 1
+        })
         headers = {
         'Host': 'fmapp.chinafamilymart.com.cn',
         'Connection': 'keep-alive',
@@ -66,8 +84,12 @@ class ActivityService():
         'Referer': 'https://fmapp-activity.chinafamilymart.com.cn/login?query=%%257B%%2522response_type%%2522%%253A%%2522token%%2522%%252C%%2522client_id%%2522%%253A%%25225A7CF52A75C1CBFC%%2522%%252C%%2522redirect_uri%%2522%%253A%%2522https%%253A%%252F%%252Fmall-oapi.chinafamilymart.com.cn%%252Fapp%%252Fapi%%252Fv1.0%%252Fmember%%252Flogin%%252Fcallback%%2522%%252C%%2522status%%2522%%253A%%2522status%%2522%%252C%%2522udf1%%2522%%253A%%2522eyJjaGFubmVsIjoiMCIsImZvcndhcmRfdXJsIjoiYUhSMGNITTZMeTl0WVd4c0xXZzFMbU5vYVc1aFptRnRhV3g1YldGeWRDNWpiMjB1WTI0dmNHRm5aWE5CTDJ4dloybHVMMnh2WjJsdVAyaHBjMVZ5YkQwdmNHRm5aWE12YzJodmNIQnBibWREWVhJdmFXNWtaWGc9In0%%253D%%2522%%257D',
         'Accept-Encoding': 'gzip, deflate'
         }
-        #response ={"text":"{\"code\":\"200\",\"message\":\"\",\"data\":{\"token\":\"eyJhbGciOiJIUzUxMiIsInppcCI6IkRFRiJ9.eNo0jU2KAjEQha8ite5AkqpU2txgNrNwnU0lnWZaFBqjMIx4AsFTuPFgMteY-DPwFvW-V493hPV-ggCjlVQ0LlWfdVYk3qmeRBTppDmXMWdi6KAeUns-RjjUsvuUbYkQIvxezov79dYUoXtlH8MzYaKBl2g5s6B12nnvXE8JrUdGJ41qbygROYMDDs--zPO73i6Vpp8Ip7Y91dq23-jhZQ_BsEHjGcl0UL5nCGS1-wdTXZVxV-oXhFE2tZz-AAAA__8.VH_5thEBNiGp4wjF-J1VS3h7bMpzI-hY_Y-_tfVKoIkmu8na3cPYaqsZ1z9JrL8nmRTMJHettX9F7wl7io3g3w\",\"phoneNumber\":null,\"memberCode\":\"644d69326c6a32505775584b3273635a6a30714b44513d3d\",\"bindId\":null,\"lastName\":\"王\",\"realName\":\"王 天天\",\"genderCd\":1,\"birthday\":\"1980-11-29 00:00:00\",\"picUrl\":\"https://fmapp-cos.chinafamilymart.com.cn/image/20210113/1610535732927/IMG_CROP_20210113_19020991.jpeg\",\"nickName\":\"fm_6597\",\"firstLoginFlag\":false,\"perfectInfoFlag\":false,\"open3rd\":null,\"zxMemberFlag\":false,\"activityId\":\"163\"}}"}
+
         response = requests.request("POST", url, headers=headers, data=payload)
+
+
+        #response ={"text":"{\"code\":\"200\",\"message\":\"\",\"data\":{\"token\":\"eyJhbGciOiJIUzUxMiIsInppcCI6IkRFRiJ9.eNo0jU2KAjEQha8ite5AkqpU2txgNrNwnU0lnWZaFBqjMIx4AsFTuPFgMteY-DPwFvW-V493hPV-ggCjlVQ0LlWfdVYk3qmeRBTppDmXMWdi6KAeUns-RjjUsvuUbYkQIvxezov79dYUoXtlH8MzYaKBl2g5s6B12nnvXE8JrUdGJ41qbygROYMDDs--zPO73i6Vpp8Ip7Y91dq23-jhZQ_BsEHjGcl0UL5nCGS1-wdTXZVxV-oXhFE2tZz-AAAA__8.VH_5thEBNiGp4wjF-J1VS3h7bMpzI-hY_Y-_tfVKoIkmu8na3cPYaqsZ1z9JrL8nmRTMJHettX9F7wl7io3g3w\",\"phoneNumber\":null,\"memberCode\":\"644d69326c6a32505775584b3273635a6a30714b44513d3d\",\"bindId\":null,\"lastName\":\"王\",\"realName\":\"王 天天\",\"genderCd\":1,\"birthday\":\"1980-11-29 00:00:00\",\"picUrl\":\"https://fmapp-cos.chinafamilymart.com.cn/image/20210113/1610535732927/IMG_CROP_20210113_19020991.jpeg\",\"nickName\":\"fm_6597\",\"firstLoginFlag\":false,\"perfectInfoFlag\":false,\"open3rd\":null,\"zxMemberFlag\":false,\"activityId\":\"163\"}}"}
+        #response = requests.request("POST", url, headers=headers, data=payload)
         body=response.text
         '''
         {"code":"200","message":"","data":{"token":"eyJhbGciOiJIUzUxMiIsInppcCI6IkRFRiJ9.eNo0jU2KAjEQha8ite5AkqpU2txgNrNwnU0lnWZaFBqjMIx4AsFTuPFgMteY-DPwFvW-V493hPV-ggCjlVQ0LlWfdVYk3qmeRBTppDmXMWdi6KAeUns-RjjUsvuUbYkQIvxezov79dYUoXtlH8MzYaKBl2g5s6B12nnvXE8JrUdGJ41qbygROYMDDs--zPO73i6Vpp8Ip7Y91dq23-jhZQ_BsEHjGcl0UL5nCGS1-wdTXZVxV-oXhFE2tZz-AAAA__8.VH_5thEBNiGp4wjF-J1VS3h7bMpzI-hY_Y-_tfVKoIkmu8na3cPYaqsZ1z9JrL8nmRTMJHettX9F7wl7io3g3w","phoneNumber":null,"memberCode":"644d69326c6a32505775584b3273635a6a30714b44513d3d","bindId":null,"lastName":"王","realName":"王 天天","genderCd":1,"birthday":"1980-11-29 00:00:00","picUrl":"https://fmapp-cos.chinafamilymart.com.cn/image/20210113/1610535732927/IMG_CROP_20210113_19020991.jpeg","nickName":"fm_6597","firstLoginFlag":false,"perfectInfoFlag":false,"open3rd":null,"zxMemberFlag":false,"activityId":"163"}}
@@ -113,21 +135,24 @@ class ActivityService():
 
     def sign(self,token):
         url = "https://fmapp.chinafamilymart.com.cn/api/app/market/member/signin/sign"
+
         payload={}
         headers = {
-        'fmVersion': '2.0.2',
+        'fmVersion': '2.4.1',
         'loginChannel': 'app',
-
+        'os': 'android',
         'Content-Type': 'application/json',
         'channel': '333',
-        'token': ''+token,
+        'blackBox': 'eyJvcyI6ImFuZHJvaWQiLCJ2ZXJzaW9uIjoiMy42LjUiLCJwcm9maWxlX3RpbWUiOjIwOCwiaW50ZXJ2YWxfdGltZSI6MiwicGFja2FnZXMiOiJjb20ueDJlcmEueGNsb3VkLmFwcCIsImNzaWQiOiIxNjIyNDE4NDE2ODgzMzUwMzI0IiwidG9rZW5faWQiOiJFaGJFT3g3M2hZWGRHSXFTQmJjalZvVkkwaE9ac0hJeUhPQjkwdmxaa092bXBVa2RMSmRvSEowWmdJU2RZYzVvR3BNZFpQQVM1UUI3OVNIWm42YytoZz09In0=',
+        'token': token,
         'deviceId': 'b42aee0fa7d44fc44d59749da550f75a',
         'Content-Length': '0',
         'Host': 'fmapp.chinafamilymart.com.cn',
         'Connection': 'Keep-Alive',
         'Accept-Encoding': 'gzip',
-        'User-Agent': 'okhttp/3.10.0'
+        'User-Agent': 'okhttp/4.7.2'
         }
+
 
         response = requests.request("POST", url, headers=headers, data=payload)        
         print(response.text)

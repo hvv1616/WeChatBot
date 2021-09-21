@@ -131,9 +131,11 @@ def handle_group_message(wx_inst, message):
         if re.match(r'^['+bot_name+']*[\s\?]*(舔|赞|顶|捧|夸|谢谢|感谢).+', msg_content):
             content_name = re.match(r'^['+bot_name+']*[\s\?]*(舔|赞|顶|捧|夸|谢谢|感谢)(.+)',
                                     msg_content).group(2).replace("@", "").replace("?", "")
-            response = requests.get("https://chp.shadiao.app/api.php")
+            # response = requests.get("https://chp.shadiao.app/api.php")
+            # txt=response.text
+            txt=json.loads(requests.get("http://api.tianapi.com/txapi/caihongpi/index?key=daed9701732cb12a8fb3c2d36b5346ce").text)["newslist"][0]["content"].replace("XXX",content_name)
             wx_inst.send_text(from_chatroom_wxid,
-                              "@{}  {}".format(content_name, response.text))
+                              "@{}  {}".format(content_name, txt))
             return
 
     # ######################################################################################################==>>>vip群组功能
@@ -170,35 +172,39 @@ def handle_group_message(wx_inst, message):
             return
     # #######################################################################################################==>>>普通群组功能
     if data_type[0] == '1' and (from_chatroom_wxid in BotService.get_config_val_obj("group_receive_list")):
-        # 查看撤回的消息
-        if re.match(r'^['+bot_name+']*[\s\?]*查看前面第\d+条消息', msg_content):
-            content_name = re.match(r'^['+bot_name+']*[\s\?]*查看前面第(\d+)条消息',
-                                    msg_content).group(1).replace("@", "").replace("?", "")
-            num = int(content_name)
-            msg_obj = botService.getChatroomMsg(
-                from_chatroom_wxid=from_chatroom_wxid, num=num)
-            msg = "消息未找到!"
-            if msg_obj.exists():
-                msg = "消息："+msg_obj.first()["msg"]
-            wx_inst.send_text(from_chatroom_wxid, msg)
-            return
-        if re.match(r'^['+bot_name+']*[\s\?]*.*消息.*', msg_content):
-            wx_inst.send_text(from_chatroom_wxid, "查看消息命令：查看前面第n条消息")
-            return
+        # # 查看撤回的消息
+        # if re.match(r'^['+bot_name+']*[\s\?]*查看前面第\d+条消息', msg_content):
+        #     content_name = re.match(r'^['+bot_name+']*[\s\?]*查看前面第(\d+)条消息',
+        #                             msg_content).group(1).replace("@", "").replace("?", "")
+        #     num = int(content_name)
+        #     msg_obj = botService.getChatroomMsg(
+        #         from_chatroom_wxid=from_chatroom_wxid, num=num)
+        #     msg = "消息未找到!"
+        #     if msg_obj.exists():
+        #         msg = "消息："+msg_obj.first()["msg"]
+        #     wx_inst.send_text(from_chatroom_wxid, msg)
+        #     return
+        # if re.match(r'^['+bot_name+']*[\s\?]*.*消息.*', msg_content):
+        #     wx_inst.send_text(from_chatroom_wxid, "查看消息命令：查看前面第n条消息")
+        #     return
         # 群舔人
         if re.match(r'^['+bot_name+']*[\s\?]*(舔|赞|顶|捧|夸|谢谢|感谢).+', msg_content):
             content_name = re.match(r'^['+bot_name+']*[\s\?]*(舔|赞|顶|捧|夸|谢谢|感谢)(.+)',
                                     msg_content).group(2).replace("@", "").replace("?", "")
-            response = requests.get("https://chp.shadiao.app/api.php")
+            # response = requests.get("https://chp.shadiao.app/api.php")
+            txt=json.loads(requests.get("http://api.tianapi.com/txapi/caihongpi/index?key=daed9701732cb12a8fb3c2d36b5346ce").text)["newslist"][0]["content"].replace("XXX",content_name)
             wx_inst.send_text(from_chatroom_wxid,
-                              "@{}  {}".format(content_name, response.text))
+                              "@{}  {}".format(content_name, txt))
         elif re.match(r'^['+bot_name+']*[\s\?]*.+[你]*真(棒|强|厉害|牛逼)', msg_content):
             content_name = re.match(r'^['+bot_name+']**[\s\?]*(.+)[你]*真[棒,强,厉害,牛逼]+', msg_content).group(
                 1).replace("@", "").replace("你", "").replace("?", "")
-            response = requests.get(
-                "https://chp.shadiao.app/api.php")
-            wx_inst.send_text(
-                from_chatroom_wxid, "@{}  {}".format(content_name, response.text))
+            # response = requests.get(
+            #     "https://chp.shadiao.app/api.php")
+            # wx_inst.send_text(
+            #     from_chatroom_wxid, "@{}  {}".format(content_name, response.text))
+            txt=json.loads(requests.get("http://api.tianapi.com/txapi/caihongpi/index?key=daed9701732cb12a8fb3c2d36b5346ce").text)["newslist"][0]["content"].replace("XXX",content_name)
+            wx_inst.send_text(from_chatroom_wxid,
+                              "@{}  {}".format(content_name, txt))
         # 群骂人（仅管理员）
         elif re.match(r'^['+bot_name+']*[\s\?]*(喷|骂)+.+', msg_content):
             if from_wxid != admin_wx:
@@ -227,7 +233,13 @@ def handle_group_message(wx_inst, message):
                 albummid = "002vVK9r4dRzPY"
             wx_inst.send_link_card(from_chatroom_wxid, obj.get("songname"), obj.get("singer")[0].get("name"), "https://y.qq.com/n/yqq/song/"+obj.get(
                 "songmid", "")+".html", img_url='https://y.gtimg.cn/music/photo_new/T002R300x300M000'+albummid+'_1.jpg?max_age=2592000')
-
+        # 群下载 视频、音乐
+        elif re.match(r'^['+bot_name+']*[\s\?]*下载.+', msg_content):
+            content_text = re.match(
+                r'['+bot_name+']*[\s\?]*下载(.+)', msg_content).group(1).replace("@", "").replace("?", "")
+            response=requests.get("http://127.0.0.1:8000/bot/downloadVideo/?url="+content_text)
+            wx_inst.send_text(
+                from_chatroom_wxid, response.text)
         # 群帮助
         elif re.match(r'^['+bot_name+']+[\s\?]+(help|帮助)', msg_content):
             help_msg = '''赞某人：舔xx，赞xx，顶xx，捧xx，夸xx,xx真棒，xx真强，xx真厉害，xx真牛逼

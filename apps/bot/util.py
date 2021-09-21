@@ -7,6 +7,9 @@ import requests
 import os
 import time
 import smtplib
+from PIL import Image, ImageDraw, ImageFont
+import os
+import datetime
 
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
@@ -206,3 +209,44 @@ class Email():
 #     mail_user=global_config.getRaw('messenger', 'email_user'),
 #     mail_pwd=global_config.getRaw('messenger', 'email_pwd'),
 # )
+
+def getDayImg(day):
+    txt1='因 为 自 信'
+    txt2='所 以 成 功'
+    # 创建图像,设置图像大小及颜色
+    im = Image.new('RGBA', (1000, 1800), (166, 12, 4, 255))
+    draw = ImageDraw.Draw(im)
+    # 设置本次使用的字体
+    fontsFolder = 'C:\Windows\Fonts'
+    # font1 = ImageFont.truetype(os.path.join(fontsFolder, '华康俪金黑W8(P).TTF'), 420)
+    # font2 = ImageFont.truetype(os.path.join(fontsFolder, '方正兰亭刊黑_GBK.ttf'), 40)
+    font1 = ImageFont.truetype(os.path.join(fontsFolder, 'STSONG.TTF'), 420)
+    font2 = ImageFont.truetype(os.path.join(fontsFolder, 'STSONG.TTF'), 80)
+    # 计算各文本的放置位置
+    txtSize_1 = draw.textsize('距 离 中 台 上 线', font2)
+    pos_x_1 = (1000 - txtSize_1[0]) / 2
+    txtSize_2 = draw.textsize('还 有', font2)
+    pos_x_2 = (1000 - txtSize_2[0]) / 2
+    txtSize_3 = draw.textsize('天', font2)
+    pos_x_3 = (1000 - txtSize_3[0]) / 2
+    txtSize_4 = draw.textsize(txt1, font2)
+    pos_x_4 = (1000 - txtSize_4[0]) / 2
+    txtSize_5 = draw.textsize(txt2, font2)
+    pos_x_5 = (1000 - txtSize_5[0]) / 2
+    # 设置文本放置位置,居中
+    draw.text((pos_x_1, 200), '距 离 中 台 上 线', fill=(217, 217, 217, 255), font=font2)
+    draw.text((pos_x_2, 300), '还 有', fill=(217, 217, 217, 255), font=font2)
+    draw.text((pos_x_3, 1050), '天', fill=(217, 217, 217, 255), font=font2)
+    draw.text((pos_x_4, 1350), txt1, fill=(137, 183, 109, 255), font=font2)
+    draw.text((pos_x_5, 1440), txt2, fill=(137, 183, 109, 255), font=font2)
+    # 绘制线框
+    draw.line([(20, 20), (980, 20), (980, 1780), (20, 1780), (20, 20)], fill=(217, 217, 217, 255), width=5)
+    # 设置变化的文本属性
+    txtSize_6 = draw.textsize(str(day), font1)
+    pos_x_6 = (1000 - txtSize_6[0]) / 2
+    draw.text((pos_x_6, 500), str(day), fill=(137, 183, 109, 255), font=font1)
+    # im.show()
+    # 保存图像
+    filename = 'images/days/day' + str(day) + '.png'
+    im.save(filename)
+    return filename

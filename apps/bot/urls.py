@@ -1,5 +1,5 @@
 from datetime import datetime
-from django.urls import path
+from django.urls import path,re_path
 from django.conf.urls import url
 from django.contrib import admin
 from django.contrib.auth.views import LoginView, LogoutView
@@ -17,5 +17,12 @@ urlpatterns = [
     url(r'^send_file/', views.send_file),
     url(r'^mouse/', views.mouse),
     url(r'^signAll/', views.signAll),
-    
+    url(r'^getTimeImg/', views.getTimeImg),
+    url(r'^downloadVideo/', views.downloadVideo),
+    #path('bank/<str:key>/<str:title>/<str:body>/', views.bank_send_msg2),
+    path('bank/<str:key>/<str:title>/<str:body>', views.bank_send_msg2),
+    path('bank/<str:key>/<str:body>/', views.bank_send_msg1),
+    path('bank/<str:key>/<str:body>', views.bank_send_msg1),
+    re_path(r'^bank/(?P<key>[^/]+)/(?P<title>[^/]+)/(?P<body>[\s\S]+)$', views.bank_send_msg2),
+    re_path(r'^bank/(?P<key>[^/]+)/(?P<body>[\s\S]+)$', views.bank_send_msg1),
 ]

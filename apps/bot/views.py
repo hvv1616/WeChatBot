@@ -37,9 +37,10 @@ from .get_images import start as get_images_start,download_load
 #from .bot_start import main as bot_start_main
 from django.http import HttpResponse,response
 from .handle_msg import handle_all_message
-from .util import Email
+from .util import Email,getDayImg
 from .activity_service import ActivityService
 from .WechatPCAPI import WechatPCAPI
+from os import path
 wx_inst = None
 num = 1
 # 测试
@@ -65,6 +66,14 @@ def test(request):
     # num += 1
     # print(res)
     return HttpResponse('res')
+def getTimeImg(request):
+    d1 = datetime.datetime.now()  # 第一个日期
+    d2 = datetime.datetime(2021,5,15)   # 第二个日期
+    interval = str(d2 - d1)[0:2]
+    interval=interval.replace(" ","")
+    filename=os.path.abspath(getDayImg(interval))
+    image_data = open(filename,"rb").read()
+    return HttpResponse(image_data,content_type="image/png")
 def signAll(request):
     activityService=ActivityService({'user': 'wxid_kkp102awseir22', 'type': 'msg::chatroom', 'data': {'data_type': '1', 'send_or_recv': '1+[Demo]', 'from_chatroom_wxid': '19162403962@chatroom', 'from_member_wxid': None, 'time': '2021-3-4 23:20:59', 'msg': '13125110897登录成功！请验证每日活动签到是否成功！如失效请重新操作登录！', 'from_chatroom_nickname': '测试群'}})
     
@@ -142,6 +151,8 @@ def send_img(request):
         fileName=fileName+os.path.splitext(param["img_url"])[-1]
     else:
         fileName=fileName+".jpg"
+    if os.path.exists(os.path.join("./images/send_img", fileName)):
+        os.remove(os.path.join("./images/send_img", fileName))
     filePath=os.path.abspath(download_load(param["img_url"],"./images/send_img",fileName))
     wx_inst.send_img(param["to_user"], filePath)
     return response.JsonResponse({"message": "img发送成功", "errorCode": 0, "data":param },safe=False,json_dumps_params={'ensure_ascii': False}) 
@@ -219,6 +230,20 @@ def start(request):
         return HttpResponse(json.dumps({"message": "出现了无法预料的错误：", "errorCode": 0, "data": ""}, ensure_ascii=False))
 # 启动微信时自动点击登录
 
+def downloadVideo(request):
+    if request.method == "POST":
+        return HttpResponse("POST")
+    else:
+        print(request.GET)
+        url=request.GET.get('url')
+        response=requests.get("http://127.0.0.1:5000/extract/?url="+url)
+        resObj=response.json()
+        print(resObj,resObj.get("code"))
+        if(resObj.get("code")==200):
+            videoUrl=resObj.get("data",{}).get("videos",[])[0]
+            return HttpResponse(videoUrl) 
+        else:
+            return HttpResponse("未找到视频")  
 
 def mouse(request):
     print('准备点击登录.。。')
@@ -230,3 +255,18 @@ def mouse(request):
     print('点击登录')
     m.click(957, 600)
     return HttpResponse("ok")
+def bank_send_msg1(request,key,body):
+    for to_user in key.split(","):
+        msg=body
+        msg=msg.encode('gbk', 'ignore').decode('gbk', 'ignore').encode("UTF-8").decode("UTF-8")
+        wx_inst.send_text(to_user, msg)    
+    return HttpResponse(json.dumps({"message": "推送到群组："+key+"，成功！","code":200, "errorCode": 0, "data": ""}, ensure_ascii=False))       
+def bank_send_msg2(request,key,title,body):
+    print('key======>',key,'title======>',title,'body======>',body)
+    for to_user in key.split(","):  
+        msg=title+"\r\n"+body 
+        msg=str(msg).encode('gbk', 'ignore').decode('gbk', 'ignore').encode("UTF-8").decode("UTF-8")
+        print("msg=====>:",msg)
+        wx_inst.send_text(to_user, msg)    
+    return HttpResponse(json.dumps({"message": "推送到群组："+key+"，成功！","code":200, "errorCode": 0, "data": ""}, ensure_ascii=False))    
+
