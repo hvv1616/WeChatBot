@@ -127,43 +127,44 @@ def handle_group_message(wx_inst, message):
         return
     # #####################################################################################################==>>>test测试群组功能
     if data_type[0] == '1' and (from_chatroom_wxid in BotService.get_config_val_obj("group_test_list")):
-        # 群舔人
-        if re.match(r'^['+bot_name+']*[\s\?]*(舔|赞|顶|捧|夸|谢谢|感谢).+', msg_content):
-            content_name = re.match(r'^['+bot_name+']*[\s\?]*(舔|赞|顶|捧|夸|谢谢|感谢)(.+)',
-                                    msg_content).group(2).replace("@", "").replace("?", "")
-            # response = requests.get("https://chp.shadiao.app/api.php")
-            # txt=response.text
-            txt=json.loads(requests.get("http://api.tianapi.com/txapi/caihongpi/index?key=daed9701732cb12a8fb3c2d36b5346ce").text)["newslist"][0]["content"].replace("XXX",content_name)
-            wx_inst.send_text(from_chatroom_wxid,
-                              "@{}  {}".format(content_name, txt))
-            return
+        # # 群舔人
+        # if re.match(r'^['+bot_name+']*[\s\?]*(舔|赞|顶|捧|夸|谢谢|感谢).+', msg_content):
+        #     content_name = re.match(r'^['+bot_name+']*[\s\?]*(舔|赞|顶|捧|夸|谢谢|感谢)(.+)',
+        #                             msg_content).group(2).replace("@", "").replace("?", "")
+        #     # response = requests.get("https://chp.shadiao.app/api.php")
+        #     # txt=response.text
+        #     txt=json.loads(requests.get("http://api.tianapi.com/txapi/caihongpi/index?key=daed9701732cb12a8fb3c2d36b5346ce").text)["newslist"][0]["content"].replace("XXX",content_name)
+        #     wx_inst.send_text(from_chatroom_wxid,
+        #                       "@{}  {}".format(content_name, txt))
+        #     return
+        pass
 
     # ######################################################################################################==>>>vip群组功能
     if data_type[0] == '1' and (from_chatroom_wxid in BotService.get_config_val_obj("group_vip_list")):
-        if re.match(r'^['+bot_name+']+[\s\?]+(我是色批|来张色图|我要看图片)', msg_content):
+        if re.match(r'^['+bot_name+']+[\s\?]+(我是色批|来张色图|我要看图片|图片|照片)', msg_content):
             randomImg = randomFile(isLoad=False)
             wx_inst.send_img(from_chatroom_wxid, randomImg)
             return
-        if re.match(r'^['+bot_name+']+[\s\?]+发米家获取验证码.+', msg_content):
-            mobile = re.match(r'^['+bot_name+']+[\s\?]+发米家获取验证码(.+)',
-                                    msg_content).group(1).replace("@", "").replace("?", "")
-            if activityService.fmLoginGetCode(mobile):
-                wx_inst.send_text(from_chatroom_wxid, "发送登录验证码到"+mobile+"成功！收到验证码后请回复：【"+bot_name+" 发米家"+mobile+"验证码xxxxxx】")
-            else:
-                 wx_inst.send_text(from_chatroom_wxid, "发送登录验证码到"+mobile+"失败！请联系管理员！")
-            return
-        if re.match(r'^['+bot_name+']+[\s\?]*发米家[\d]+验证码[\d]+', msg_content):
-            obj = re.match(r'^['+bot_name+']+[\s\?]+发米家([\d]+)验证码([\d]+)',msg_content)
-            mobile=obj.group(1).replace("@", "").replace("?", "")
-            verifyCode = obj.group(2).replace("@", "").replace("?", "")
-            if activityService.fmLogin(mobile,verifyCode):
-                wx_inst.send_text(from_chatroom_wxid, mobile+"登录成功！请验证每日活动签到是否成功！如失效请重新操作登录！")
-            else:
-                wx_inst.send_text(from_chatroom_wxid, mobile+"登录失败！请联系管理员！")
-            return
-        if re.match(r'^['+bot_name+']+[\s\?]*发米家$', msg_content):
-            wx_inst.send_text(from_chatroom_wxid,"发米家签到活动操作步骤：\r\n 1.发送消息：【"+bot_name+"发米家获取验证码177xxxxxxxxx】获取登录验证码。\r\n 2.发送消息：【"+bot_name+"发米家177xxxxxxxx验证码xxxxxx】登录，登录成功后即可每日自动签到。")
-            return
+        # if re.match(r'^['+bot_name+']+[\s\?]+发米家获取验证码.+', msg_content):
+        #     mobile = re.match(r'^['+bot_name+']+[\s\?]+发米家获取验证码(.+)',
+        #                             msg_content).group(1).replace("@", "").replace("?", "")
+        #     if activityService.fmLoginGetCode(mobile):
+        #         wx_inst.send_text(from_chatroom_wxid, "发送登录验证码到"+mobile+"成功！收到验证码后请回复：【"+bot_name+" 发米家"+mobile+"验证码xxxxxx】")
+        #     else:
+        #          wx_inst.send_text(from_chatroom_wxid, "发送登录验证码到"+mobile+"失败！请联系管理员！")
+        #     return
+        # if re.match(r'^['+bot_name+']+[\s\?]*发米家[\d]+验证码[\d]+', msg_content):
+        #     obj = re.match(r'^['+bot_name+']+[\s\?]+发米家([\d]+)验证码([\d]+)',msg_content)
+        #     mobile=obj.group(1).replace("@", "").replace("?", "")
+        #     verifyCode = obj.group(2).replace("@", "").replace("?", "")
+        #     if activityService.fmLogin(mobile,verifyCode):
+        #         wx_inst.send_text(from_chatroom_wxid, mobile+"登录成功！请验证每日活动签到是否成功！如失效请重新操作登录！")
+        #     else:
+        #         wx_inst.send_text(from_chatroom_wxid, mobile+"登录失败！请联系管理员！")
+        #     return
+        # if re.match(r'^['+bot_name+']+[\s\?]*发米家$', msg_content):
+        #     wx_inst.send_text(from_chatroom_wxid,"发米家签到活动操作步骤：\r\n 1.发送消息：【"+bot_name+"发米家获取验证码177xxxxxxxxx】获取登录验证码。\r\n 2.发送消息：【"+bot_name+"发米家177xxxxxxxx验证码xxxxxx】登录，登录成功后即可每日自动签到。")
+        #     return
     # ######################################################################################################==>>>supvip群组功能
     if data_type[0] == '1' and (from_chatroom_wxid in BotService.get_config_val_obj("group_supvip_list")):
         if re.match(r'^['+bot_name+']+[\s\?]+(我是色批|来张色图|我要看图片)', msg_content):
@@ -195,8 +196,8 @@ def handle_group_message(wx_inst, message):
             txt=json.loads(requests.get("http://api.tianapi.com/txapi/caihongpi/index?key=daed9701732cb12a8fb3c2d36b5346ce").text)["newslist"][0]["content"].replace("XXX",content_name)
             wx_inst.send_text(from_chatroom_wxid,
                               "@{}  {}".format(content_name, txt))
-        elif re.match(r'^['+bot_name+']*[\s\?]*.+[你]*真(棒|强|厉害|牛逼)', msg_content):
-            content_name = re.match(r'^['+bot_name+']**[\s\?]*(.+)[你]*真[棒,强,厉害,牛逼]+', msg_content).group(
+        elif re.match(r'^['+bot_name+']*[\s\?]*.+[你]*[真]*(棒|强|厉害|牛逼|漂亮|谢谢|感谢)', msg_content):
+            content_name = re.match(r'^['+bot_name+']*[\s\?]*(.+)[你]*[真]*(棒|强|厉害|牛逼|漂亮|谢谢|感谢)+', msg_content).group(
                 1).replace("@", "").replace("你", "").replace("?", "")
             # response = requests.get(
             #     "https://chp.shadiao.app/api.php")

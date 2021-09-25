@@ -23,7 +23,7 @@ APPEND_SLASH=False
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["wxbot.1day.wang","mysql.1day.wang","*.1day.wang","127.0.0.1","localhost","1day.wang"]
+ALLOWED_HOSTS = ["wxbot.1day.wang","mysql.1day.wang","*.1day.wang","127.0.0.1","localhost", '[::1]',"1day.wang"]
 
 # Application references
 # https://docs.djangoproject.com/en/2.1/ref/settings/#std:setting-INSTALLED_APPS
